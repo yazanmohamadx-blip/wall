@@ -100,7 +100,9 @@ const allowedOrigins = [
   'http://127.0.0.1:5000',
   'https://aljdar-alameen.com',
   'https://www.aljdar-alameen.com',
-  'https://wall-lp8h.onrender.com'
+  'https://wall-lp8h.onrender.com',
+  'https://securewalljo.com',
+  'https://www.securewalljo.com'
 ];
 
 app.use(cors({
