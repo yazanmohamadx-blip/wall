@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إعداد حساب المدير الأول | الجدار الآمن للأنظمة الإلكترونية</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/admin.css">
+
+  <style>
+    .setup-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: radial-gradient(circle at 50% 10%, rgba(14, 165, 233, 0.18) 0%, #090d16 65%);
+    }
+
+    .setup-box {
+      width: 100%;
+      max-width: 500px;
+      background: var(--adm-card);
+      border: 1px solid var(--adm-border-active);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+
+    .setup-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--adm-accent);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .setup-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .setup-header h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .setup-header p {
+      font-size: 0.9rem;
+      color: var(--adm-text-muted);
+      line-height: 1.6;
+    }
+
+    .setup-alert {
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+      display: none;
+      align-items: flex-start;
+      gap: 0.6rem;
+      line-height: 1.5;
+    }
+
+    .setup-alert.error {
+      display: flex;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+    }
+
+    .setup-alert.success {
+      display: flex;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--adm-text-muted);
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .security-notice-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--adm-border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .security-notice-box i {
+      color: var(--adm-accent);
+      margin-left: 0.35rem;
+    }
+
+    .strength-meter {
+      height: 4px;
+      background: #1e293b;
+      border-radius: 2px;
+      margin-top: 0.4rem;
+      overflow: hidden;
+    }
+
+    .strength-meter-bar {
+      height: 100%;
+      width: 0%;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="setup-wrapper">
+    <div class="setup-box">
+      
+      <div style="text-align: center;">
+        <span class="setup-badge">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>إعداد الأمان لأول تشغيل</span>
+        </span>
+      </div>
+
+      <div class="setup-header">
+        <h1>إنشاء حساب المدير الرئيسي</h1>
+        <p>مرحباً بك في نظام مؤسسة الجدار الآمن. يرجى تحديد بيانات حساب المدير المسؤول عن النظام لحمايته بالكامل.</p>
+      </div>
+
+      <div class="security-notice-box">
+        <i class="fa-solid fa-lock"></i>
+        <strong>ملاحظة أمنية هامة:</strong> هذه الصفحة متاحة لمرة واحدة فقط لتسجيل أول حساب مدير، وسيتم قفلها وتعطيلها نهائياً بمجرد إتمام الحفظ لضمان عدم تمكن أي شخص من إنشاء حسابات إضافية من الخارج.
+      </div>
+
+      <div id="setupAlert" class="setup-alert"></div>
+
+      <form id="setupForm" novalidate autocomplete="off">
+        
+        <div class="form-group">
+          <label class="form-label" for="adminName">اسم المدير / المسؤول</label>
+          <input type="text" id="adminName" class="form-input" placeholder="مثال: مدير النظام التقني" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="adminEmail">البريد الإلكتروني للإدارة (اسم المستخدم)</label>
+          <input type="email" id="adminEmail" class="form-input" placeholder="admin@aljidar-security.com" required autocomplete="email" dir="ltr">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="adminPassword">كلمة المرور الجديدة</label>
+          <div class="password-wrap">
+            <input type="password" id="adminPassword" class="form-input" placeholder="••••••••••••" required autocomplete="new-password" style="padding-left: 2.8rem;" dir="ltr">
+            <button type="button" class="password-toggle-btn" id="togglePasswordBtn" aria-label="إظهار/إخفاء كلمة المرور">
+              <i class="fa-solid fa-eye" id="eyeIcon"></i>
+            </button>
+          </div>
+          <div class="strength-meter">
+            <div class="strength-meter-bar" id="strengthBar"></div>
+          </div>
+          <small id="strengthText" style="font-size: 0.75rem; color: var(--adm-text-muted);">كلمة المرور يجب ألا تقل عن 8 خانات وتحتوي على أرقام وحروف.</small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">تأكيد كلمة المرور</label>
+          <div class="password-wrap">
+            <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••••••" required autocomplete="new-password" style="padding-left: 2.8rem;" dir="ltr">
+            <button type="button" class="password-toggle-btn" id="toggleConfirmBtn" aria-label="إظهار/إخفاء تأكيد كلمة المرور">
+              <i class="fa-solid fa-eye" id="confirmEyeIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <button type="submit" class="btn-adm btn-adm-primary" style="width: 100%; padding: 0.95rem; font-size: 1rem;" id="submitSetupBtn">
+            <i class="fa-solid fa-shield-check"></i>
+            <span>تأكيد وإنشاء حساب المدير والبدء</span>
+          </button>
+        </div>
+
+      </form>
+
+      <div style="margin-top: 1.75rem; text-align: center; font-size: 0.825rem; color: var(--adm-text-muted);">
+        <a href="../index.html" style="color: var(--adm-accent); text-decoration: none;">
+          <i class="fa-solid fa-arrow-left"></i> العودة للموقع الإلكتروني
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Check if initial setup is actually needed
+    fetch('/api/auth/setup-status')
+      .then(res => res.json())
+      .then(data => {
+        if (!data.setupRequired) {
+          window.location.href = 'login.html';
+        }
+      })
+      .catch(() => {});
+
+    // Password visibility toggle
+    function setupToggle(btnId, inputId, iconId) {
+      const btn = document.getElementById(btnId);
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      btn?.addEventListener('click', () => {
+        const isPwd = input.type === 'password';
+        input.type = isPwd ? 'text' : 'password';
+        icon.className = isPwd ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+      });
+    }
+    setupToggle('togglePasswordBtn', 'adminPassword', 'eyeIcon');
+    setupToggle('toggleConfirmBtn', 'confirmPassword', 'confirmEyeIcon');
+
+    // Password strength check
+    const pwdInput = document.getElementById('adminPassword');
+    const strengthBar = document.getElementById('strengthBar');
+    const strengthText = document.getElementById('strengthText');
+
+    pwdInput.addEventListener('input', () => {
+      const val = pwdInput.value;
+      let score = 0;
+      if (val.length >= 8) score += 25;
+      if (/[A-Z]/.test(val) || /[a-z]/.test(val)) score += 25;
+      if (/[0-9]/.test(val)) score += 25;
+      if (/[^A-Za-z0-9]/.test(val)) score += 25;
+
+      strengthBar.style.width = score + '%';
+      if (score <= 25) {
+        strengthBar.style.background = '#ef4444';
+        strengthText.textContent = 'ضعيفة: يرجى إضافة أحرف وأرقام (8 خانات على الأقل).';
+        strengthText.style.color = '#ef4444';
+      } else if (score <= 50) {
+        strengthBar.style.background = '#f59e0b';
+        strengthText.textContent = 'متوسطة: يفضل إضافة رموز أو أحرف كبيرة.';
+        strengthText.style.color = '#f59e0b';
+      } else {
+        strengthBar.style.background = '#10b981';
+        strengthText.textContent = 'قوية ومناسبة للحماية الأمنية.';
+        strengthText.style.color = '#10b981';
+      }
+    });
+
+    // Form Submission
+    const form = document.getElementById('setupForm');
+    const alertBox = document.getElementById('setupAlert');
+    const submitBtn = document.getElementById('submitSetupBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('adminName').value.trim();
+      const email = document.getElementById('adminEmail').value.trim();
+      const password = document.getElementById('adminPassword').value;
+      const confirm = document.getElementById('confirmPassword').value;
+
+      if (!name || !email || !password || !confirm) {
+        showAlert('يرجى ملء جميع الحقول المطلوبة.', 'error');
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showAlert('يرجى إدخال بريد إلكتروني صحيح ومعتمد.', 'error');
+        return;
+      }
+
+      if (password.length < 8) {
+        showAlert('كلمة المرور يجب ألا تقل عن 8 خانات.', 'error');
+        return;
+      }
+
+      if (password !== confirm) {
+        showAlert('كلمتا المرور غير متطابقتين.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري تهيئة النظام وتشفير الحساب...';
+
+      try {
+        const res = await fetch('/api/auth/initial-setup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showAlert('تم إنشاء حساب المدير بنجاح وقفل الإعداد الأولي! جاري التحويل للوحة التحكم...', 'success');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1200);
+        } else {
+          showAlert(data.message || 'حدث خطأ أثناء إعداد الحساب.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-shield-check"></i> تأكيد وإنشاء حساب المدير والبدء';
+        }
+      } catch (err) {
+        showAlert('تعذر الاتصال بالخادم، يرجى المحاولة لاحقاً.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-shield-check"></i> تأكيد وإنشاء حساب المدير والبدء';
+      }
+    });
+
+    function showAlert(msg, type) {
+      alertBox.className = `setup-alert ${type}`;
+      alertBox.innerHTML = type === 'error'
+        ? `<i class="fa-solid fa-circle-exclamation"></i> <span>${msg}</span>`
+        : `<i class="fa-solid fa-circle-check"></i> <span>${msg}</span>`;
+      alertBox.style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

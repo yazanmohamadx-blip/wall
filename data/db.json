@@ -1,0 +1,397 @@
+{
+  "companyInfo": {
+    "companyName": "الجدار الآمن للأنظمة الإلكترونية",
+    "companyShortName": "الجدار الآمن",
+    "tagline": "حلول متكاملة للأمن والسلامة والأنظمة الإلكترونية",
+    "phone": "+962 7 9000 0000",
+    "phoneRaw": "+962790000000",
+    "whatsapp": "+962 7 9000 0000",
+    "whatsappNumber": "962790000000",
+    "email": "info@aljidar-security.com",
+    "address": "المملكة الأردنية الهاشمية - عمّان",
+    "city": "عمّان",
+    "workingHours": "السبت - الخميس: 8:30 ص - 6:30 م",
+    "googleMapsUrl": "https://maps.google.com",
+    "googleReviewsUrl": "https://search.google.com/local/writereview?placeid=ChIJ000000000000",
+    "logo": "",
+    "logoUrl": "",
+    "socialLinks": {
+      "facebook": "https://facebook.com/",
+      "instagram": "https://instagram.com/",
+      "tiktok": "https://tiktok.com/",
+      "twitter": "https://twitter.com/",
+      "linkedin": "https://linkedin.com/"
+    }
+  },
+  "hero": {
+    "badge": "الجدار الآمن للأنظمة الإلكترونية",
+    "title": "حلول متكاملة للأمن والسلامة والأنظمة الإلكترونية",
+    "description": "نقدم حلولاً متكاملة في كاميرات المراقبة، أنظمة الحريق، الشبكات، أنظمة الإنذار والسلامة، مع خدمات التركيب والتجهيز والصيانة.",
+    "bgImage": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1920&q=80",
+    "feature1": "تركيب وتجهيز",
+    "feature2": "صيانة ودعم فني",
+    "feature3": "حلول للمنازل والمنشآت"
+  },
+  "services": [
+    {
+      "id": "cctv",
+      "title": "كاميرات المراقبة",
+      "desc": "أنظمة مراقبة تلفزيونية وشبكية (IP & CCTV) عالية الدقة بدقة 4K مع رؤية ليلية وتسجيل مستمر وربط ذكي بالهواتف.",
+      "icon": "fa-solid fa-video",
+      "url": "cctv.html",
+      "image": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "fire-alarm",
+      "title": "أنظمة إنذار الحريق",
+      "desc": "أنظمة كشف وإنذار مبكر ضد الحريق (معنونة وعادية) معتمدة ومطابقة لاشتراطات الدفاع المدني لحماية الأرواح والمنشآت.",
+      "icon": "fa-solid fa-fire-burner",
+      "url": "fire-alarm.html",
+      "image": "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=800&q=80",
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "fire-fighting",
+      "title": "أنظمة مكافحة الحريق",
+      "desc": "تجهيز وتركيب شبكات الرش الآلي وصناديق الإطفاء ومضخات الحريق وأنظمة الغازات النظيفة لحماية الأصول.",
+      "icon": "fa-solid fa-fire-extinguisher",
+      "url": "fire-fighting.html",
+      "image": "https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=800&q=80",
+      "visible": true,
+      "order": 3
+    },
+    {
+      "id": "networking",
+      "title": "أنظمة الشبكات",
+      "desc": "تمديد وتجهيز شبكات نقل البيانات السلكية والألياف البصرية وترتيب كبائن السيرفرات وتوزيع الواي فاي المؤسسي.",
+      "icon": "fa-solid fa-network-wired",
+      "url": "networking.html",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+      "visible": true,
+      "order": 4
+    },
+    {
+      "id": "security-alarm",
+      "title": "أنظمة الإنذار والحماية",
+      "desc": "منظومات ذكية لمكافحة السرقة والاقتحام عبر حساسات الحركة والأبواب مع إشعارات فورية مباشرة على هاتفك وصفارات تحذير.",
+      "icon": "fa-solid fa-bell",
+      "url": "security-alarm.html",
+      "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+      "visible": true,
+      "order": 5
+    },
+    {
+      "id": "safety-systems",
+      "title": "أنظمة السلامة العامة",
+      "desc": "أنظمة التحكم بالدخول (Access Control) والبوابات الأمنية وأجهزة البصمة وأنظمة النداء الصوتي والإخلاء في الطوارئ.",
+      "icon": "fa-solid fa-shield-halved",
+      "url": "safety-systems.html",
+      "image": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80",
+      "visible": true,
+      "order": 6
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-1",
+      "title": "تركيب نظام كاميرات مراقبة وغرفة تحكم",
+      "service": "كاميرات المراقبة",
+      "category": "cctv",
+      "sector": "الشركات والمكاتب",
+      "desc": "تغطية بصرية شاملة للمبنى مع شاشات مراقبة وتسجيل رقمي بدقة 4K.",
+      "image": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80",
+      "altText": "شاشات غرفة مراقبة أمنية وكاميرات حديثة",
+      "additionalImages": [],
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "proj-2",
+      "title": "شبكة إنذار ومكافحة حريق معتمدة",
+      "service": "أنظمة إنذار الحريق",
+      "category": "fire",
+      "sector": "المستودعات",
+      "desc": "تركيب كواشف متطورة ولوحات تحكم وصناديق إطفاء مطابقة لاشتراطات الدفاع المدني.",
+      "image": "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=800&q=80",
+      "altText": "تجهيزات شبكة إطفاء وإنذار حريق",
+      "additionalImages": [],
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "proj-3",
+      "title": "تنظيم كابينة سيرفرات وشبكة بيانات داخلية",
+      "service": "أنظمة الشبكات",
+      "category": "network",
+      "sector": "الشركات والمكاتب",
+      "desc": "ترتيب احترافي لكابلات الفايبر وCat6 وتنظيم الباتش بانل والمفاتيح الشبكية المدارة.",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+      "altText": "كابينة سيرفرات مرتبة ومنظمة هندسياً",
+      "additionalImages": [],
+      "visible": true,
+      "order": 3
+    },
+    {
+      "id": "proj-4",
+      "title": "كاميرات خارجية ذكية ومقاومة للعوامل الجوية",
+      "service": "كاميرات المراقبة",
+      "category": "cctv",
+      "sector": "المنازل والفلل",
+      "desc": "تأمين الأسوار والمحيط الخارجي برؤية ليلية ليزرية وتتبع ذكي للحركة.",
+      "image": "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?auto=format&fit=crop&w=800&q=80",
+      "altText": "كاميرا مراقبة خارجية ذكية",
+      "additionalImages": [],
+      "visible": true,
+      "order": 4
+    },
+    {
+      "id": "proj-5",
+      "title": "نظام إنذار وحماية ضد التسلل والاقتحام",
+      "service": "أنظمة الإنذار والحماية",
+      "category": "alarm",
+      "sector": "المحلات التجارية",
+      "desc": "حساسات ليزرية ومغناطيسية مرتبطة بغرفة العمليات وتطبيق الجوال مع سرينات رادعة.",
+      "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+      "altText": "لوحة تحكم وحساسات إنذار ضد السرقة",
+      "additionalImages": [],
+      "visible": true,
+      "order": 5
+    },
+    {
+      "id": "proj-6",
+      "title": "أنظمة التحكم بالدخول وبوابات أمنية ذكية",
+      "service": "أنظمة السلامة العامة",
+      "category": "safety",
+      "sector": "المنشآت الصناعية",
+      "desc": "أجهزة قراءة بصمة الوجه والكروت المشفرة لتنظيم دخول الموظفين والزوار وتوثيق السجلات.",
+      "image": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80",
+      "altText": "بوابة دخول أمنية وجهاز بصمة إلكتروني",
+      "additionalImages": [],
+      "visible": true,
+      "order": 6
+    }
+  ],
+  "employees": [
+    {
+      "id": "emp-1",
+      "name": "م. أحمد الغامدي",
+      "title": "مهندس أنظمة أمنية وحماية",
+      "department": "قسم المشاريع والتركيبات الميدانية",
+      "specialization": "كاميرات المراقبة (CCTV)، أنظمة التحكم بالدخول، الشبكات",
+      "bio": "مهندس متخصص في تصميم وتنفيذ وتجهيز منظومات المراقبة التلفزيونية والتحكم بالدخول للمنشآت والمنازل والشركات بأعلى معايير الدقة الهندسية.",
+      "phone": "+962 7 9111 2233",
+      "phoneRaw": "+962791112233",
+      "whatsapp": "+962 7 9111 2233",
+      "whatsappNumber": "962791112233",
+      "email": "ahmad@aljidar-security.com",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+      "status": "فعال",
+      "socials": {
+        "linkedin": "https://linkedin.com",
+        "twitter": "https://twitter.com"
+      },
+      "createdAt": "2026-09-18T19:00:00.000Z"
+    },
+    {
+      "id": "emp-2",
+      "name": "م. محمد السالم",
+      "title": "مهندس أنظمة السلامة ومكافحة الحريق",
+      "department": "قسم هندسة السلامة والوقاية",
+      "specialization": "أنظمة إنذار الحريق، شبكات الرش الآلي، استشارات السلامة المهنية",
+      "bio": "خبير في متطلبات واشتراطات الدفاع المدني، معتمد في تخطيط وتنفيذ شبكات الإنذار المبكر وشبكات مكافحة الحريق للمستودعات والمباني التجارية.",
+      "phone": "+962 7 8444 5566",
+      "phoneRaw": "+962784445566",
+      "whatsapp": "+962 7 8444 5566",
+      "whatsappNumber": "962784445566",
+      "email": "mohammed@aljidar-security.com",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+      "status": "فعال",
+      "socials": {
+        "linkedin": "https://linkedin.com"
+      },
+      "createdAt": "2026-09-18T19:15:00.000Z"
+    },
+    {
+      "id": "emp-3",
+      "name": "خالد الشهري",
+      "title": "أخصائي دعم فني وصيانة أنظمة",
+      "department": "قسم الصيانة والدعم الفني",
+      "specialization": "صيانة كاميرات المراقبة، فحص كابلات الشبكات، وبرمجة أجهزة التسجيل",
+      "bio": "مسؤول الدعم الفني والصيانة الدورية للمواقع والمشاريع لضمان استمرارية عمل المنظومات الأمنية ومعالجة أي طارئ بسرعة وكفاءة.",
+      "phone": "+962 7 7777 8899",
+      "phoneRaw": "+962777778899",
+      "whatsapp": "+962 7 7777 8899",
+      "whatsappNumber": "962777778899",
+      "email": "khaled@aljidar-security.com",
+      "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80",
+      "status": "فعال",
+      "socials": {
+        "linkedin": "https://linkedin.com"
+      },
+      "createdAt": "2026-09-18T19:30:00.000Z"
+    }
+  ],
+  "nfcCards": [
+    {
+      "id": "card-1",
+      "slug": "ahmad",
+      "cardCode": "NFC-A782",
+      "employeeId": "emp-1",
+      "status": "مفعلة",
+      "createdAt": "2026-09-18T19:05:00.000Z",
+      "stats": {
+        "opens": 49,
+        "calls": 14,
+        "whatsapps": 19,
+        "vCards": 12,
+        "googleReviews": 9,
+        "lastVisit": "2026-09-18T20:16:03.067Z"
+      },
+      "isActive": true,
+      "updatedAt": "2026-09-18T20:02:12.342Z"
+    },
+    {
+      "id": "card-2",
+      "slug": "mohammed",
+      "cardCode": "NFC-M904",
+      "employeeId": "emp-2",
+      "status": "مفعلة",
+      "createdAt": "2026-09-18T19:20:00.000Z",
+      "stats": {
+        "opens": 31,
+        "calls": 9,
+        "whatsapps": 12,
+        "vCards": 7,
+        "googleReviews": 5,
+        "lastVisit": "2026-09-18T20:10:00.000Z"
+      }
+    },
+    {
+      "id": "card-3",
+      "slug": "khaled",
+      "cardCode": "NFC-K315",
+      "employeeId": "emp-3",
+      "status": "مفعلة",
+      "createdAt": "2026-09-18T19:35:00.000Z",
+      "stats": {
+        "opens": 22,
+        "calls": 6,
+        "whatsapps": 8,
+        "vCards": 4,
+        "googleReviews": 3,
+        "lastVisit": "2026-09-18T18:50:00.000Z"
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-3",
+      "cardSlug": "ahmad",
+      "employeeId": "emp-1",
+      "employeeName": "م. أحمد الغامدي",
+      "rating": 5,
+      "clientName": "عبدالله الشمري",
+      "comment": "خدمة ممتازة وسرعة عالية في التركيب واحترافية متناهية من المهندس أحمد وفريق العمل.",
+      "approved": true,
+      "status": "approved",
+      "createdAt": "2026-09-18T19:54:41.180Z"
+    },
+    {
+      "id": "rev-1",
+      "cardSlug": "ahmad",
+      "employeeId": "emp-1",
+      "employeeName": "م. أحمد الغامدي",
+      "rating": 5,
+      "clientName": "أبو فهد - شركة المقاولات",
+      "comment": "تعامل راقي جداً واحترافية عالية في تنفيذ نظام كاميرات المراقبة للمستودع في وقت قياسي.",
+      "approved": true,
+      "createdAt": "2026-09-18T20:00:00.000Z"
+    },
+    {
+      "id": "rev-2",
+      "cardSlug": "mohammed",
+      "employeeId": "emp-2",
+      "employeeName": "م. محمد السالم",
+      "rating": 5,
+      "clientName": "سعد الشمري",
+      "comment": "خبرة ممتازة في اشتراطات الدفاع المدني ومتابعة دقيقة لكل تفاصيل شبكة الإنذار.",
+      "approved": true,
+      "createdAt": "2026-09-18T19:30:00.000Z"
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "هل تقدمون خدمات المعاينة الميدانية قبل تقديم عرض السعر؟",
+      "answer": "نعم، نوفر زيارات ميدانية لمعاينة الموقع بدقة، وتحديد زوايا الكاميرات والنقاط الحيوية ودراسة شبكة التمديدات لتقديم عرض سعر دقيق ومفصل.",
+      "order": 1
+    },
+    {
+      "id": "faq-2",
+      "question": "هل الأجهزة والأنظمة لديكم معتمدة ومطابقة لاشتراطات الدفاع المدني؟",
+      "answer": "كافة أنظمة ومعدات إنذار ومكافحة الحريق التي نقوم بتوريدها وتركيبها معتمدة ومطابقة لأعلى المواصفات القياسية واشتراطات الدفاع المدني الرسمية.",
+      "order": 2
+    },
+    {
+      "id": "faq-3",
+      "question": "هل يمكنني متابعة كاميرات المراقبة عن بُعد من الهاتف الذكي؟",
+      "answer": "بالتأكيد، نقوم بتهيئة وتفعيل تطبيقات الجوال الرسمية لأنظمة المراقبة (iOS و Android) لمتابعة البث المباشر والتسجيلات من أي مكان في العالم مجاناً.",
+      "order": 3
+    },
+    {
+      "id": "faq-4",
+      "question": "ما هي فترات الضمان وخدمات ما بعد البيع المتوفرة؟",
+      "answer": "نقدم ضماناً شاملاً على الأجهزة والتركيبات، بالإضافة إلى خيارات عقود الصيانة الدورية والدعم الفني السريع لضمان عمل كافة الأنظمة بأقصى كفاءة.",
+      "order": 4
+    }
+  ],
+  "quotes": [
+    {
+      "id": "quote-1",
+      "name": "م. عبدالله الزعبي",
+      "phone": "0791234567",
+      "service": "كاميرات مراقبة",
+      "location": "عمّان - شارع مكة",
+      "inspection": "نعم",
+      "details": "نرغب بتركيب 16 كاميرا مراقبة داخلية وخارجية لمبنى إداري مكون من 3 طوابق مع ربطها بشاشة عرض.",
+      "status": "جديد",
+      "createdAt": "2026-09-18T18:45:00.000Z"
+    },
+    {
+      "id": "quote-2",
+      "name": "أبو فهد العبادي",
+      "phone": "0789876543",
+      "service": "إنذار حريق",
+      "location": "الزرقاء - المنطقة الصناعية",
+      "inspection": "نعم",
+      "details": "تجديد شبكة كواشف الدخان والحرارة لمستودع مساحته 1200 متر مربع لاستيفاء اشتراطات الدفاع المدني الأردني.",
+      "status": "تم التواصل",
+      "createdAt": "2026-09-17T11:20:00.000Z"
+    }
+  ],
+  "admins": [
+    {
+      "id": "admin-1789764464835",
+      "name": "yazan",
+      "email": "yazan.mohamadx@icloud.com",
+      "passwordHash": "$2b$12$xOdVfZllVPOhPPlt78X2Z.kHmToMpz9QVK61jvEZHi0FUYNLOqV86",
+      "role": "superadmin",
+      "twoFactorEnabled": false,
+      "twoFactorSecret": null,
+      "createdAt": "2026-09-18T20:47:44.835Z"
+    }
+  ],
+  "activeSessions": [
+    {
+      "token": "3b4506ae6436a323c9d0e3692e4d874a70a06a81a6da6d53163aea2a3a7b18f9",
+      "adminId": "admin-1789764464835",
+      "email": "yazan.mohamadx@icloud.com",
+      "name": "yazan",
+      "createdAt": 1789764464835
+    }
+  ],
+  "passwordResetTokens": []
+}

@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم | الجدار الآمن للأنظمة الإلكترونية</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <a href="index.html" class="sidebar-brand">
+        <div class="sidebar-brand-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <span class="sidebar-brand-title">الجدار الآمن</span>
+          <span class="sidebar-brand-sub">لوحة الإدارة الشاملة</span>
+        </div>
+      </a>
+
+      <ul class="sidebar-nav">
+        <li>
+          <button class="nav-item-btn active" data-tab="dashboard">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>لوحة الإحصائيات</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="projects">
+            <i class="fa-solid fa-images"></i>
+            <span>المشاريع والأعمال</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="services">
+            <i class="fa-solid fa-server"></i>
+            <span>إدارة الخدمات</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="company">
+            <i class="fa-solid fa-building"></i>
+            <span>بيانات المؤسسة</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="homepage">
+            <i class="fa-solid fa-house"></i>
+            <span>الصفحة الرئيسية</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="faqs">
+            <i class="fa-solid fa-circle-question"></i>
+            <span>الأسئلة الشائعة</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="quotes">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <span>طلبات عروض الأسعار</span>
+            <span class="nav-badge" id="sidebarQuotesBadge">0</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="nfc">
+            <i class="fa-solid fa-id-card-clip"></i>
+            <span>بطاقات NFC والموظفون</span>
+            <span class="nav-badge" id="sidebarCardsBadge">0</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="reviews">
+            <i class="fa-solid fa-star"></i>
+            <span>تقييمات العملاء</span>
+            <span class="nav-badge" id="sidebarReviewsBadge">0</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="security">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>الأمان والحساب</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <span style="font-size: 0.8rem; color: var(--adm-text-muted);">المستخدم: <strong style="color: #fff;">المدير</strong></span>
+        <button class="admin-logout-btn btn-adm-sm" id="logoutBtn" title="تسجيل الخروج">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>خروج</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="تبديل القائمة">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h2 class="topbar-title" id="currentTabTitle">لوحة الإحصائيات العامة</h2>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="../index.html" target="_blank" class="admin-view-site">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>معاينة الموقع</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Container -->
+      <div class="admin-container">
+        
+        <!-- ================================================================
+             TAB 1: DASHBOARD OVERVIEW & STATS
+             ================================================================ -->
+        <section class="tab-pane active" id="pane-dashboard">
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-info">
+                <h4>إجمالي المشاريع</h4>
+                <div class="stat-number" id="statProjectsCount">0</div>
+              </div>
+              <div class="stat-icon blue">
+                <i class="fa-solid fa-images"></i>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-info">
+                <h4>إجمالي الخدمات</h4>
+                <div class="stat-number" id="statServicesCount">6</div>
+              </div>
+              <div class="stat-icon green">
+                <i class="fa-solid fa-server"></i>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-info">
+                <h4>طلبات عروض الأسعار</h4>
+                <div class="stat-number" id="statQuotesCount">0</div>
+              </div>
+              <div class="stat-icon amber">
+                <i class="fa-solid fa-file-invoice"></i>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-info">
+                <h4>طلبات جديدة بحاجة لمتابعة</h4>
+                <div class="stat-number" id="statNewQuotesCount" style="color: #60a5fa;">0</div>
+              </div>
+              <div class="stat-icon purple">
+                <i class="fa-solid fa-bell"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Quotes -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title"><i class="fa-solid fa-clock-rotate-left"></i> آخر طلبات عروض الأسعار المستلمة</h3>
+              <button class="btn-adm btn-adm-secondary btn-adm-sm" onclick="switchTab('quotes')">
+                <span>عرض جميع الطلبات</span>
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>اسم العميل</th>
+                    <th>الهاتف</th>
+                    <th>الخدمة المطلوبة</th>
+                    <th>الموقع</th>
+                    <th>معاينة؟</th>
+                    <th>التاريخ والوقت</th>
+                    <th>الحالة</th>
+                    <th>الإجراء</th>
+                  </tr>
+                </thead>
+                <tbody id="recentQuotesTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recent Projects -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title"><i class="fa-solid fa-briefcase"></i> أحدث مشاريع معرض الأعمال</h3>
+              <button class="btn-adm btn-adm-primary btn-adm-sm" onclick="openAddProjectModal()">
+                <i class="fa-solid fa-plus"></i>
+                <span>إضافة مشروع جديد</span>
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>الصورة</th>
+                    <th>اسم المشروع</th>
+                    <th>نوع الخدمة</th>
+                    <th>القطاع</th>
+                    <th>الحالة</th>
+                    <th>الإجراء</th>
+                  </tr>
+                </thead>
+                <tbody id="recentProjectsTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================
+             TAB 2: PROJECTS & WORKS MANAGEMENT
+             ================================================================ -->
+        <section class="tab-pane" id="pane-projects">
+          
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">إدارة المشاريع والأعمال</h2>
+              <p class="pane-subtitle">يمكنك إضافة، تعديل، حذف، أو إخفاء أي مشروع من معرض أعمال الموقع مباشرة دون كود</p>
+            </div>
+            <button class="btn-adm btn-adm-primary" onclick="openAddProjectModal()">
+              <i class="fa-solid fa-plus"></i>
+              <span>إضافة مشروع جديد</span>
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>الصورة الرئيسية</th>
+                    <th>اسم المشروع</th>
+                    <th>الخدمة</th>
+                    <th>القطاع / المنشأة</th>
+                    <th>الوصف</th>
+                    <th>الظهور</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="projectsTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================
+             TAB 3: SERVICES MANAGEMENT
+             ================================================================ -->
+        <section class="tab-pane" id="pane-services">
+          
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">إدارة الخدمات</h2>
+              <p class="pane-subtitle">تعديل مسميات الخدمات وأوصافها وصورها وترتيب ظهورها في الموقع</p>
+            </div>
+            <button class="btn-adm btn-adm-primary" onclick="openAddServiceModal()">
+              <i class="fa-solid fa-plus"></i>
+              <span>إضافة خدمة جديدة</span>
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>الأيقونة</th>
+                    <th>اسم الخدمة</th>
+                    <th>الوصف المختصر</th>
+                    <th>الرابط</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="servicesTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================
+             TAB 4: COMPANY INFORMATION
+             ================================================================ -->
+        <section class="tab-pane" id="pane-company">
+          
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">بيانات المؤسسة والتواصل</h2>
+              <p class="pane-subtitle">أي تعديل هنا يتم تحديثه فوراً في الهيدر، الفوتر، الشريط العلوي وكافة قنوات التواصل</p>
+            </div>
+            <button class="btn-adm btn-adm-primary" id="saveCompanyBtn">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>حفظ التعديلات</span>
+            </button>
+          </div>
+
+          <form id="companyForm">
+            <!-- Logo Upload Card -->
+            <div class="admin-card" style="margin-bottom: 1.5rem;">
+              <h3 class="admin-card-title" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-image"></i> شعار المؤسسة الرسمي (Logo)</h3>
+              <p style="font-size: 0.85rem; color: var(--adm-text-muted); margin-bottom: 1.25rem;">
+                ارفع صورة الشعار من جهازك (PNG, JPG, SVG, WEBP). يظهر الشعار في أعلى الموقع وفي الفوتر وبطاقات NFC.
+              </p>
+
+              <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+                <!-- Logo Preview Box -->
+                <div style="width: 140px; height: 140px; border-radius: 12px; background: rgba(14, 165, 233, 0.08); border: 2px dashed rgba(56, 189, 248, 0.35); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; padding: 10px;" id="logoPreviewContainer">
+                  <img id="compLogoPreview" src="" alt="شعار المؤسسة" style="max-width: 100%; max-height: 100%; object-fit: contain; display: none;">
+                  <div id="compLogoPlaceholder" style="text-align: center; color: var(--adm-text-muted); font-size: 0.8rem;">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: var(--adm-accent); margin-bottom: 0.4rem; display: block;"></i>
+                    <span>شعار افتراضي</span>
+                  </div>
+                </div>
+
+                <div style="flex: 1; min-width: 260px;">
+                  <div class="upload-dropzone" id="logoDropzone" style="padding: 1.25rem 1rem; cursor: pointer;">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon" style="font-size: 2rem; margin-bottom: 0.4rem; color: var(--adm-accent);"></i>
+                    <div class="upload-text" style="font-weight: 700; font-size: 0.95rem;">اضغط هنا لاختيار الشعار من جهاز الكمبيوتر أو اسحبه إلى هنا</div>
+                    <div class="upload-hint">يُفضل ملف شفاف PNG أو SVG بدقة عالية</div>
+                    <input type="file" id="compLogoFileInput" accept="image/*" style="display: none;">
+                  </div>
+
+                  <input type="hidden" id="compLogoUrl">
+
+                  <div id="logoFileInfo" style="display: none; align-items: center; justify-content: space-between; margin-top: 0.75rem; background: rgba(255,255,255,0.04); padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid var(--adm-border);">
+                    <span id="logoFileName" style="font-size: 0.85rem; color: var(--adm-accent); font-weight: 600; word-break: break-all;">-</span>
+                    <button type="button" class="btn-adm btn-adm-danger btn-adm-sm" onclick="removeCompanyLogo()"><i class="fa-solid fa-trash"></i> إزالة الشعار</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <h3 class="admin-card-title" style="margin-bottom: 1.25rem;">المعلومات الأساسية</h3>
+              <div class="form-grid">
+                
+                <div class="form-group">
+                  <label class="form-label" for="compName">اسم المؤسسة الكامل</label>
+                  <input type="text" id="compName" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="compShortName">الاسم المختصر</label>
+                  <input type="text" id="compShortName" class="form-input" required>
+                </div>
+
+                <div class="form-group full">
+                  <label class="form-label" for="compTagline">الشعار اللفظي (Slogan)</label>
+                  <input type="text" id="compTagline" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="compPhone">رقم الهاتف للاتصال المباشر</label>
+                  <input type="text" id="compPhone" class="form-input" dir="ltr" style="text-align: right;">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="compWhatsapp">رقم الواتساب (بالصيغة الدولية مثلاً 966500000000)</label>
+                  <input type="text" id="compWhatsapp" class="form-input" dir="ltr" style="text-align: right;">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="compEmail">البريد الإلكتروني</label>
+                  <input type="email" id="compEmail" class="form-input" dir="ltr" style="text-align: right;">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="compCity">المدينة</label>
+                  <input type="text" id="compCity" class="form-input">
+                </div>
+
+                <div class="form-group full">
+                  <label class="form-label" for="compAddress">العنوان الكامل / المقر</label>
+                  <input type="text" id="compAddress" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="compHours">ساعات العمل</label>
+                  <input type="text" id="compHours" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="compMaps">رابط خرائط جوجل (Google Maps URL)</label>
+                  <input type="url" id="compMaps" class="form-input" dir="ltr">
+                </div>
+
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <h3 class="admin-card-title" style="margin-bottom: 1.25rem;">روابط منصات التواصل الاجتماعي</h3>
+              <div class="form-grid">
+                
+                <div class="form-group">
+                  <label class="form-label" for="socialTwitter">منصة X (تويتر)</label>
+                  <input type="url" id="socialTwitter" class="form-input" dir="ltr">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="socialLinkedin">لينكد إن (LinkedIn)</label>
+                  <input type="url" id="socialLinkedin" class="form-input" dir="ltr">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="socialInstagram">انستغرام (Instagram)</label>
+                  <input type="url" id="socialInstagram" class="form-input" dir="ltr">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="socialFacebook">فيسبوك (Facebook)</label>
+                  <input type="url" id="socialFacebook" class="form-input" dir="ltr">
+                </div>
+
+                <div class="form-group full">
+                  <label class="form-label" for="socialTiktok">تيك توك (TikTok)</label>
+                  <input type="url" id="socialTiktok" class="form-input" dir="ltr">
+                </div>
+
+              </div>
+            </div>
+          </form>
+
+        </section>
+
+        <!-- ================================================================
+             TAB 5: HOMEPAGE HERO & CONTENT
+             ================================================================ -->
+        <section class="tab-pane" id="pane-homepage">
+          
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">إدارة محتوى الصفحة الرئيسية</h2>
+              <p class="pane-subtitle">التحكم في عنوان الـ Hero، الوصف، صورة الخلفية ونقاط المزايا</p>
+            </div>
+            <button class="btn-adm btn-adm-primary" id="saveHeroBtn">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>حفظ محتوى الواجهة</span>
+            </button>
+          </div>
+
+          <form id="heroForm">
+            <div class="admin-card">
+              <h3 class="admin-card-title" style="margin-bottom: 1.25rem;">القسم الافتتاحي (Hero Section)</h3>
+              <div class="form-grid">
+                
+                <div class="form-group full">
+                  <label class="form-label" for="heroBadge">نص الشارة العلوية الصغيرة</label>
+                  <input type="text" id="heroBadge" class="form-input">
+                </div>
+
+                <div class="form-group full">
+                  <label class="form-label" for="heroTitle">العنوان الرئيسي الكبير</label>
+                  <input type="text" id="heroTitle" class="form-input">
+                </div>
+
+                <div class="form-group full">
+                  <label class="form-label" for="heroDescription">الوصف التعريفي للـ Hero</label>
+                  <textarea id="heroDescription" class="form-textarea"></textarea>
+                </div>
+
+                <div class="form-group full">
+                  <label class="form-label" for="heroBgImage">رابط صورة الخلفية الرئيسية</label>
+                  <input type="text" id="heroBgImage" class="form-input" dir="ltr">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="heroFeature1">الميزة الأولى</label>
+                  <input type="text" id="heroFeature1" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="heroFeature2">الميزة الثانية</label>
+                  <input type="text" id="heroFeature2" class="form-input">
+                </div>
+
+                <div class="form-group full">
+                  <label class="form-label" for="heroFeature3">الميزة الثالثة</label>
+                  <input type="text" id="heroFeature3" class="form-input">
+                </div>
+
+              </div>
+            </div>
+          </form>
+
+        </section>
+
+        <!-- ================================================================
+             TAB 6: FAQs MANAGEMENT
+             ================================================================ -->
+        <section class="tab-pane" id="pane-faqs">
+          
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">إدارة الأسئلة الشائعة (FAQ)</h2>
+              <p class="pane-subtitle">إضافة وإجابة الأسئلة الأكثر تكراراً لتظهر مباشرة لزوار الموقع</p>
+            </div>
+            <button class="btn-adm btn-adm-primary" onclick="openAddFaqModal()">
+              <i class="fa-solid fa-plus"></i>
+              <span>إضافة سؤال جديد</span>
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>السؤال</th>
+                    <th>الإجابة</th>
+                    <th>الترتيب</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="faqsTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================
+             TAB 7: QUOTES & INQUIRIES MANAGEMENT
+             ================================================================ -->
+        <section class="tab-pane" id="pane-quotes">
+          
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">طلبات عروض الأسعار المستلمة</h2>
+              <p class="pane-subtitle">كافة الاستفسارات وطلبات التسعير القادمة من نموذج الموقع في مكان واحد</p>
+            </div>
+            
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <label class="form-label" style="margin: 0;">تصفية حسب الحالة:</label>
+              <select id="filterQuotesStatus" class="form-select" style="width: auto; padding: 0.45rem 1rem;">
+                <option value="all">جميع الحالات</option>
+                <option value="جديد">جديد</option>
+                <option value="تم التواصل">تم التواصل</option>
+                <option value="قيد المتابعة">قيد المتابعة</option>
+                <option value="مكتمل">مكتمل</option>
+                <option value="ملغي">ملغي</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>اسم العميل</th>
+                    <th>رقم الهاتف</th>
+                    <th>الخدمة المطلوبة</th>
+                    <th>موقع المشروع</th>
+                    <th>معاينة؟</th>
+                    <th>تفاصيل الطلب</th>
+                    <th>التاريخ</th>
+                    <th>حالة الطلب</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="allQuotesTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================
+             TAB 8: NFC CARDS & EMPLOYEES MANAGEMENT
+             ================================================================ -->
+        <section class="tab-pane" id="pane-nfc">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">إدارة بطاقات NFC الذكية والموظفين</h2>
+              <p class="pane-subtitle">إدارة بطاقات الموظفين الإلكترونية، توليد رموز QR Code، وإحصائيات الزيارات والتفاعل</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn-adm btn-adm-secondary" onclick="openCardModal()">
+                <i class="fa-solid fa-plus"></i>
+                <span>إصدار بطاقة NFC جديدة</span>
+              </button>
+              <button class="btn-adm btn-adm-primary" onclick="openEmployeeModal()">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>إضافة موظف جديد</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Cards Sub-navigation / Summary -->
+          <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 1.5rem;">
+            <div class="stat-card">
+              <div class="stat-info">
+                <h4>إجمالي الموظفين</h4>
+                <div class="stat-number" id="statEmpCount">0</div>
+              </div>
+              <div class="stat-icon blue">
+                <i class="fa-solid fa-users"></i>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h4>البطاقات المفعلة</h4>
+                <div class="stat-number" id="statActiveCardsCount" style="color: #10b981;">0</div>
+              </div>
+              <div class="stat-icon green">
+                <i class="fa-solid fa-id-card"></i>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h4>إجمالي زيارات البطاقات</h4>
+                <div class="stat-number" id="statTotalVisitsCount" style="color: #38bdf8;">0</div>
+              </div>
+              <div class="stat-icon purple">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h4>حفظ جهة الاتصال (vCard)</h4>
+                <div class="stat-number" id="statTotalVcardDownloads">0</div>
+              </div>
+              <div class="stat-icon amber">
+                <i class="fa-solid fa-address-book"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 1: NFC Cards Table -->
+          <div class="admin-card" style="margin-bottom: 2rem;">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title"><i class="fa-solid fa-microchip"></i> بطاقات NFC والروابط الذكية</h3>
+              <span style="font-size: 0.85rem; color: var(--adm-text-muted);">انقر على "رمز QR" للمعاينة أو الطباعة أو تحميل الرمز</span>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>كود البطاقة</th>
+                    <th>الموظف المرتبط</th>
+                    <th>الرابط المباشر (Slug)</th>
+                    <th>الزيارات والتفاعل</th>
+                    <th>الحالة</th>
+                    <th>رمز QR</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="nfcCardsTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 2: Employees Table -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title"><i class="fa-solid fa-id-badge"></i> سجل الموظفين والملفات التعريفية</h3>
+              <button class="btn-adm btn-adm-primary btn-adm-sm" onclick="openEmployeeModal()">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>إضافة موظف</span>
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>الصورة</th>
+                    <th>اسم الموظف</th>
+                    <th>المسمى الوظيفي</th>
+                    <th>القسم والتخصصات</th>
+                    <th>بيانات الاتصال</th>
+                    <th>البطاقة المرتبطة</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="employeesTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 9: CUSTOMER REVIEWS
+             ================================================================ -->
+        <section class="tab-pane" id="pane-reviews">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">تقييمات وآراء العملاء (عبر بطاقات NFC)</h2>
+              <p class="pane-subtitle">مراجعة التقييمات والآراء الواردة من العملاء والتحكم في ظهورها</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <label class="form-label" style="margin: 0;">تصفية:</label>
+              <select id="filterReviewsStatus" class="form-select" style="width: auto; padding: 0.45rem 1rem;">
+                <option value="all">جميع التقييمات</option>
+                <option value="approved">معتمدة ومقبولة</option>
+                <option value="pending">بانتظار المراجعة</option>
+                <option value="hidden">مخفية</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>العميل</th>
+                    <th>رقم الجوال</th>
+                    <th>الموظف المعني</th>
+                    <th>التقييم</th>
+                    <th>التعليق والملاحظات</th>
+                    <th>تاريخ التقييم</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="reviewsTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 10: SECURITY & ADMIN ACCOUNT
+             ================================================================ -->
+        <section class="tab-pane" id="pane-security">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">الأمان وحساب الإدارة</h2>
+              <p class="pane-subtitle">إدارة بيانات حساب المدير، تغيير كلمة المرور، تفعيل التحقق بخطوتين والنسخ الاحتياطي</p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem;">
+            
+            <!-- 1. Account Info -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="admin-card-title"><i class="fa-solid fa-user-shield"></i> بيانات حساب المدير</h3>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 1rem; padding: 0.5rem 0;">
+                <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid var(--adm-border);">
+                  <span style="color: var(--adm-text-muted);">الاسم الكامل:</span>
+                  <strong id="secAdminName" style="color: #fff;">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid var(--adm-border);">
+                  <span style="color: var(--adm-text-muted);">البريد الإلكتروني:</span>
+                  <strong id="secAdminEmail" dir="ltr" style="color: var(--adm-accent);">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid var(--adm-border);">
+                  <span style="color: var(--adm-text-muted);">مستوى الصلاحيات:</span>
+                  <span class="status-badge active">مدير النظام (Super Admin)</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--adm-text-muted);">تاريخ الإنشاء:</span>
+                  <span id="secAdminCreatedAt" style="color: #94a3b8; font-size: 0.85rem;">-</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Change Password -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="admin-card-title"><i class="fa-solid fa-key"></i> تغيير كلمة المرور</h3>
+              </div>
+              <form id="changePasswordForm">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label class="form-label" for="currentPassword">كلمة المرور الحالية</label>
+                  <input type="password" id="currentPassword" class="form-input" required dir="ltr">
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label class="form-label" for="newPassword">كلمة المرور الجديدة</label>
+                  <input type="password" id="newPassword" class="form-input" required minlength="8" dir="ltr">
+                  <small style="color: var(--adm-text-muted); font-size: 0.72rem;">8 خانات كحد أدنى (أرقام وأحرف)</small>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label class="form-label" for="confirmNewPassword">تأكيد كلمة المرور الجديدة</label>
+                  <input type="password" id="confirmNewPassword" class="form-input" required dir="ltr">
+                </div>
+                <button type="submit" class="btn-adm btn-adm-primary" style="width: 100%;" id="btnChangePassword">
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  <span>تحديث كلمة المرور</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- 3. Two-Factor Authentication (2FA) -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="admin-card-title"><i class="fa-solid fa-mobile-screen-button"></i> التحقق بخطوتين (2FA)</h3>
+                <span id="sec2faBadge" class="status-badge cancelled">غير مفعّل</span>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--adm-text-muted); line-height: 1.6; margin-bottom: 1.25rem;">
+                قم بربط حسابك بتطبيقات مثل Google Authenticator أو Microsoft Authenticator لطلب رمز سداسي عند تسجيل الدخول.
+              </p>
+              <div id="box2faDisabled">
+                <button type="button" class="btn-adm btn-adm-primary" id="btnStart2fa" style="width: 100%;">
+                  <i class="fa-solid fa-qrcode"></i>
+                  <span>تفعيل التحقق بخطوتين (2FA)</span>
+                </button>
+              </div>
+              <div id="box2faEnabled" style="display: none;">
+                <button type="button" class="btn-adm btn-adm-danger" id="btnDisable2fa" style="width: 100%;">
+                  <i class="fa-solid fa-shield-slash"></i>
+                  <span>تعطيل التحقق بخطوتين</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. Manual Database Backup -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="admin-card-title"><i class="fa-solid fa-database"></i> النسخ الاحتياطي لقاعدة البيانات</h3>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--adm-text-muted); line-height: 1.6; margin-bottom: 1.25rem;">
+                يقوم النظام بحفظ نسخ احتياطية تلقائياً في مجلد آمن ومحمي. يمكنك إنشاء نسخة احتياطية فورية في أي وقت وحفظها.
+              </p>
+              <button type="button" class="btn-adm btn-adm-secondary" id="btnManualBackup" style="width: 100%;">
+                <i class="fa-solid fa-download"></i>
+                <span>إنشاء نسخة احتياطية فورية الآن</span>
+              </button>
+              <div id="backupStatusText" style="margin-top: 0.75rem; font-size: 0.8rem; color: #10b981; display: none;"></div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ================================================================
+       MODAL: ADD / EDIT PROJECT (مع Drag & Drop للصور والضغط التلقائي)
+       ================================================================ -->
+  <div class="modal-admin-backdrop" id="projectModal">
+    <div class="modal-admin-card">
+      <div class="modal-admin-header">
+        <h3 class="modal-admin-title" id="projectModalTitle">إضافة مشروع جديد</h3>
+        <button class="modal-admin-close" onclick="closeProjectModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="projectForm">
+        <input type="hidden" id="projectEditId">
+        
+        <div class="form-grid">
+          
+          <div class="form-group full">
+            <label class="form-label" for="projTitle">اسم المشروع *</label>
+            <input type="text" id="projTitle" class="form-input" placeholder="مثال: تركيب نظام كاميرات مراقبة وغرفة تحكم" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="projService">نوع الخدمة *</label>
+            <select id="projService" class="form-select" required>
+              <option value="كاميرات المراقبة" data-cat="cctv">كاميرات المراقبة</option>
+              <option value="أنظمة إنذار الحريق" data-cat="fire">أنظمة إنذار الحريق</option>
+              <option value="أنظمة مكافحة الحريق" data-cat="fire">أنظمة مكافحة الحريق</option>
+              <option value="أنظمة الشبكات" data-cat="network">أنظمة الشبكات</option>
+              <option value="أنظمة الإنذار والحماية" data-cat="alarm">أنظمة الإنذار والحماية</option>
+              <option value="أنظمة السلامة العامة" data-cat="safety">أنظمة السلامة العامة</option>
+              <option value="أخرى" data-cat="all">أخرى</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="projSector">القطاع / نوع المنشأة *</label>
+            <select id="projSector" class="form-select" required>
+              <option value="المنازل والفلل">المنازل والفلل</option>
+              <option value="الشركات والمكاتب">الشركات والمكاتب</option>
+              <option value="المحلات التجارية">المحلات التجارية</option>
+              <option value="المستودعات">المستودعات</option>
+              <option value="المنشآت الصناعية">المنشآت الصناعية</option>
+              <option value="المشاريع والمنشآت المختلفة">المشاريع والمنشآت المختلفة</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="projDesc">وصف المشروع</label>
+            <textarea id="projDesc" class="form-textarea" placeholder="اكتب نبذة مختصرة عن حجم ومواصفات المشروع..."></textarea>
+          </div>
+
+          <!-- Drag & Drop Image Upload Section -->
+          <div class="form-group full">
+            <label class="form-label">الصورة الرئيسية للمشروع *</label>
+            <div class="upload-dropzone" id="projDropzone">
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+              <div class="upload-text">اسحب وأفلت الصورة هنا أو اضغط للاختيار من جهازك</div>
+              <div class="upload-hint">يتم ضغط وتحسين الصورة تلقائياً للحفاظ على سرعة فائقة للموقع (JPG, PNG, WEBP)</div>
+              <input type="file" id="projImageFile" accept="image/*" style="display: none;">
+            </div>
+
+            <div class="image-preview-box" id="projPreviewBox" style="display: none;">
+              <img id="projPreviewImg" src="" alt="معاينة الصورة">
+              <div style="flex: 1; min-width: 0;">
+                <div id="projPreviewName" style="font-weight: 700; font-size: 0.875rem; word-break: break-all;">صورة مختارة</div>
+                <div id="projPreviewSize" style="font-size: 0.775rem; color: var(--adm-text-muted);">حجم محسن</div>
+              </div>
+              <button type="button" class="btn-adm btn-adm-danger btn-adm-sm" onclick="removeSelectedProjImage()">حذف</button>
+            </div>
+
+            <!-- Hidden input for final image URL / base64 -->
+            <input type="hidden" id="projFinalImageUrl" required>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="projAltText">النص البديل للصورة (ALT Text للـ SEO ومحركات البحث)</label>
+            <input type="text" id="projAltText" class="form-input" placeholder="وصف محتوى الصورة لمحركات البحث">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="projVisible">حالة الظهور</label>
+            <select id="projVisible" class="form-select">
+              <option value="true">ظاهر في الموقع</option>
+              <option value="false">مخفي مؤقتاً</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 1.75rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn-adm btn-adm-secondary" onclick="closeProjectModal()">إلغاء</button>
+          <button type="submit" class="btn-adm btn-adm-primary" id="saveProjectBtn">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>حفظ المشروع</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MODAL: ADD / EDIT SERVICE
+       ================================================================ -->
+  <div class="modal-admin-backdrop" id="serviceModal">
+    <div class="modal-admin-card">
+      <div class="modal-admin-header">
+        <h3 class="modal-admin-title" id="serviceModalTitle">تعديل الخدمة</h3>
+        <button class="modal-admin-close" onclick="closeServiceModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="serviceForm">
+        <input type="hidden" id="serviceEditId">
+
+        <div class="form-grid">
+          <div class="form-group full">
+            <label class="form-label" for="srvTitle">اسم الخدمة *</label>
+            <input type="text" id="srvTitle" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="srvIcon">كود الأيقونة (Font Awesome)</label>
+            <input type="text" id="srvIcon" class="form-input" placeholder="fa-solid fa-video" dir="ltr">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="srvUrl">رابط صفحة الخدمة</label>
+            <input type="text" id="srvUrl" class="form-input" dir="ltr" placeholder="cctv.html">
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="srvDesc">الوصف التعريفي للخدمة *</label>
+            <textarea id="srvDesc" class="form-textarea" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="srvVisible">حالة الظهور</label>
+            <select id="srvVisible" class="form-select">
+              <option value="true">ظاهر</option>
+              <option value="false">مخفي</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.75rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn-adm btn-adm-secondary" onclick="closeServiceModal()">إلغاء</button>
+          <button type="submit" class="btn-adm btn-adm-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>حفظ التعديل</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MODAL: ADD / EDIT FAQ
+       ================================================================ -->
+  <div class="modal-admin-backdrop" id="faqModal">
+    <div class="modal-admin-card">
+      <div class="modal-admin-header">
+        <h3 class="modal-admin-title" id="faqModalTitle">إضافة سؤال شائع</h3>
+        <button class="modal-admin-close" onclick="closeFaqModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="faqForm">
+        <input type="hidden" id="faqEditId">
+
+        <div class="form-grid">
+          <div class="form-group full">
+            <label class="form-label" for="faqQuestion">نص السؤال *</label>
+            <input type="text" id="faqQuestion" class="form-input" placeholder="مثال: هل توفرون عقود صيانة دورية؟" required>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="faqAnswer">الإجابة الوافية *</label>
+            <textarea id="faqAnswer" class="form-textarea" placeholder="اكتب إجابة السؤال بوضوح واحترافية..." required></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.75rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn-adm btn-adm-secondary" onclick="closeFaqModal()">إلغاء</button>
+          <button type="submit" class="btn-adm btn-adm-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>حفظ السؤال</span>
+          </button>
+        </div>
+      </form>
+  <!-- ================================================================
+       MODAL: ADD / EDIT EMPLOYEE
+       ================================================================ -->
+  <div class="modal-admin-backdrop" id="employeeModal">
+    <div class="modal-admin-card" style="max-width: 650px;">
+      <div class="modal-admin-header">
+        <h3 class="modal-admin-title" id="employeeModalTitle">إضافة موظف جديد</h3>
+        <button class="modal-admin-close" onclick="closeEmployeeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="employeeForm">
+        <input type="hidden" id="empEditId">
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="empName">اسم الموظف *</label>
+            <input type="text" id="empName" class="form-input" placeholder="مثال: م. أحمد الغامدي" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="empTitle">المسمى الوظيفي *</label>
+            <input type="text" id="empTitle" class="form-input" placeholder="مثال: مدير المشاريع والحلول الأمنية" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="empDepartment">القسم / الإدارة *</label>
+            <input type="text" id="empDepartment" class="form-input" placeholder="مثال: إدارة المشاريع وهندسة الأنظمة" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="empSpecializations">التخصصات والخبرات (مفصولة بفواصل)</label>
+            <input type="text" id="empSpecializations" class="form-input" placeholder="كاميرات المراقبة، أنظمة الإنذار، التحكم بالدخول">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="empPhone">رقم الجوال للاتصال *</label>
+            <input type="tel" id="empPhone" class="form-input" placeholder="+962790000000" dir="ltr" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="empWhatsapp">رقم الواتساب *</label>
+            <input type="tel" id="empWhatsapp" class="form-input" placeholder="+962790000000" dir="ltr" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="empEmail">البريد الإلكتروني المهني</label>
+            <input type="email" id="empEmail" class="form-input" placeholder="employee@aljidar-security.com" dir="ltr">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="empActive">حالة الحساب</label>
+            <select id="empActive" class="form-select">
+              <option value="true">نشط / على رأس العمل</option>
+              <option value="false">معطل / غير نشط</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="empBio">نبذة تعريفية ومجال العمل</label>
+            <textarea id="empBio" class="form-textarea" rows="3" placeholder="نبذة مختصرة عن الخبرات والمشاريع التي يشرف عليها..."></textarea>
+          </div>
+
+          <!-- Employee Photo Upload from Computer -->
+          <div class="form-group full">
+            <label class="form-label">الصورة الشخصية للموظف (من الكمبيوتر)</label>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(14, 165, 233, 0.1); border: 2px dashed rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0;">
+                <img id="empPhotoPreview" src="" alt="معاينة الصورة" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                <i id="empPhotoIconPlaceholder" class="fa-solid fa-user" style="font-size: 1.8rem; color: var(--adm-accent);"></i>
+              </div>
+              <div style="flex: 1;">
+                <div class="upload-dropzone" id="empPhotoDropzone" style="padding: 0.85rem 1rem; cursor: pointer;">
+                  <i class="fa-solid fa-cloud-arrow-up upload-icon" style="font-size: 1.4rem; margin-bottom: 0.2rem; color: var(--adm-accent);"></i>
+                  <div class="upload-text" style="font-size: 0.85rem; font-weight: 700;">اضغط هنا لاختيار صورة من الكمبيوتر أو اسحبها هنا</div>
+                  <input type="file" id="empPhotoFileInput" accept="image/*" style="display: none;">
+                </div>
+              </div>
+            </div>
+            <input type="hidden" id="empPhotoUrl">
+          </div>
+        </div>
+
+        <div style="margin-top: 1.75rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn-adm btn-adm-secondary" onclick="closeEmployeeModal()">إلغاء</button>
+          <button type="submit" class="btn-adm btn-adm-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>حفظ الموظف</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MODAL: ADD / EDIT NFC CARD
+       ================================================================ -->
+  <div class="modal-admin-backdrop" id="cardModal">
+    <div class="modal-admin-card" style="max-width: 550px;">
+      <div class="modal-admin-header">
+        <h3 class="modal-admin-title" id="cardModalTitle">إصدار بطاقة NFC</h3>
+        <button class="modal-admin-close" onclick="closeCardModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="cardForm">
+        <input type="hidden" id="cardEditId">
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="cardCode">رمز أو كود البطاقة *</label>
+            <input type="text" id="cardCode" class="form-input" placeholder="مثال: NFC-SEC-001" dir="ltr" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cardSlug">الاسم بالرابط (Unique Slug) *</label>
+            <input type="text" id="cardSlug" class="form-input" placeholder="مثال: ahmad أو mohammed" dir="ltr" pattern="[a-zA-Z0-9_-]+" title="حروف وأرقام وشرطات فقط بدون مسافات" required>
+            <small style="color: var(--adm-accent); font-size: 0.75rem; display: block; margin-top: 0.25rem;" id="slugPreviewText">الرابط: /card/ahmad</small>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="cardEmployeeId">الموظف المرتبط بهذه البطاقة *</label>
+            <select id="cardEmployeeId" class="form-select" required>
+              <option value="">-- اختر موظفاً لربطه بالبطاقة --</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="cardActive">حالة تفعيل البطاقة</label>
+            <select id="cardActive" class="form-select">
+              <option value="true">مفعّلة وتعمل بشكل طبيعي</option>
+              <option value="false">معطلة مؤقتاً (تظهر رسالة اعتذار للعميل)</option>
+            </select>
+            <small style="color: var(--adm-text-muted); font-size: 0.75rem; margin-top: 0.25rem; display: block;">في حال فقدان البطاقة يمكنك تعطيلها فوراً بضغطة زر دون مسح بيانات الموظف.</small>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.75rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn-adm btn-adm-secondary" onclick="closeCardModal()">إلغاء</button>
+          <button type="submit" class="btn-adm btn-adm-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>حفظ البطاقة</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MODAL: QR CODE PREVIEW & PRINT
+       ================================================================ -->
+  <div class="modal-admin-backdrop" id="qrModal">
+    <div class="modal-admin-card" style="max-width: 500px; text-align: center;">
+      <div class="modal-admin-header">
+        <h3 class="modal-admin-title" id="qrModalTitle">رمز QR للبطاقة الذكية</h3>
+        <button class="modal-admin-close" onclick="closeQrModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div style="padding: 1.25rem 0;">
+        <div id="qrImageWrapper" style="display: inline-block; background: #ffffff; padding: 16px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 1.25rem;">
+          <img id="qrModalImage" src="" alt="QR Code" style="width: 240px; height: 240px; display: block;">
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <h4 id="qrModalEmpName" style="color: #fff; font-size: 1.15rem; margin-bottom: 0.25rem;">اسم الموظف</h4>
+          <span id="qrModalEmpTitle" style="color: var(--adm-accent); font-size: 0.85rem;">المسمى الوظيفي</span>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+          <input type="text" id="qrModalUrlInput" class="form-input" readonly dir="ltr" style="text-align: left; font-size: 0.85rem;">
+          <button type="button" class="btn-adm btn-adm-secondary" onclick="copyQrUrl()" title="نسخ الرابط">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a id="qrDownloadBtn" download="card-qr.png" href="#" class="btn-adm btn-adm-primary">
+            <i class="fa-solid fa-download"></i>
+            <span>تحميل الرمز (PNG عالي الدقة)</span>
+          </a>
+          <button type="button" class="btn-adm btn-adm-secondary" onclick="printQrCard()">
+            <i class="fa-solid fa-print"></i>
+            <span>طباعة</span>
+          </button>
+          <a id="qrVisitBtn" href="#" target="_blank" class="btn-adm btn-adm-secondary">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>فتح البطاقة</span>
+          </a>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding: 0.85rem; background: rgba(56, 189, 248, 0.08); border: 1px dashed rgba(56, 189, 248, 0.3); border-radius: 8px; text-align: right; font-size: 0.8rem; color: #cbd5e1;">
+          <strong style="color: var(--adm-accent); display: block; margin-bottom: 0.25rem;"><i class="fa-solid fa-circle-info"></i> طريقة كتابة الرابط على شريحة NFC:</strong>
+          افتح تطبيق <span dir="ltr"><strong>NFC Tools</strong></span> على هاتفك، اختر <span dir="ltr"><strong>Write</strong></span> ثم <span dir="ltr"><strong>Add a record</strong></span> ثم <span dir="ltr"><strong>URL / URI</strong></span>، والصق الرابط أعلاه ثم قرّب بطاقة NFC من الهاتف.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MODAL: 2FA SETUP (TOTP Authenticator)
+       ================================================================ -->
+  <div class="modal-admin-backdrop" id="modal2fa">
+    <div class="modal-admin-card" style="max-width: 440px; text-align: center;">
+      <div class="modal-admin-header">
+        <h3 class="modal-admin-title">تفعيل التحقق بخطوتين (2FA)</h3>
+        <button class="modal-admin-close" onclick="close2faModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--adm-text-muted); margin-bottom: 1rem; line-height: 1.5;">
+        امسح رمز QR التالي بواسطة تطبيق المصادقة (<strong style="color:#fff;">Google Authenticator</strong> أو <strong style="color:#fff;">Microsoft Authenticator</strong>)، ثم أدخل الرمز الظاهر على شاشتك:
+      </p>
+      <div style="background: #fff; padding: 10px; border-radius: 12px; display: inline-block; margin-bottom: 1rem;">
+        <img id="qr2faImage" src="" alt="2FA QR Code" style="width: 200px; height: 200px; display: block;">
+      </div>
+      <div style="margin-bottom: 1rem; background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 6px;">
+        <span style="font-size: 0.75rem; color: var(--adm-text-muted); display: block;">المفتاح اليدوي (في حال تعذر المسح):</span>
+        <code id="text2faSecret" style="color: var(--adm-accent); font-family: monospace; font-size: 0.95rem; user-select: all; font-weight: bold;"></code>
+      </div>
+      <form id="formConfirm2fa">
+        <div style="margin-bottom: 1.25rem;">
+          <input type="text" id="input2faCode" class="form-input" placeholder="000000" maxlength="6" style="text-align: center; font-size: 1.5rem; letter-spacing: 0.25rem; font-family: monospace;" required autocomplete="one-time-code">
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button type="button" class="btn-adm btn-adm-secondary" style="flex: 1;" onclick="close2faModal()">إلغاء</button>
+          <button type="submit" class="btn-adm btn-adm-primary" style="flex: 2;" id="btnSubmitConfirm2fa">تأكيد وتفعيل</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="adm-toast" id="admToast">
+    <i class="fa-solid fa-circle-check" style="color: var(--adm-accent); font-size: 1.3rem;"></i>
+    <span id="admToastMsg">تم الحفظ بنجاح!</span>
+  </div>
+
+  <!-- Admin Scripts -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

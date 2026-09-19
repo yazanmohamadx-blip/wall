@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>البطاقة التعريفية الذكية | الجدار الآمن للأنظمة الإلكترونية</title>
+  
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="البطاقة التعريفية الذكية NFC - مؤسسة الجدار الآمن للأنظمة الإلكترونية">
+
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-primary: #090d16;
+      --bg-card: #121a2d;
+      --bg-surface: rgba(20, 31, 54, 0.7);
+      --accent-blue: #0284c7;
+      --accent-light: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --text-white: #ffffff;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(148, 163, 184, 0.15);
+      --font-family: 'Cairo', 'Tajawal', -apple-system, sans-serif;
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-full: 9999px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-white);
+      direction: rtl;
+      text-align: right;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1.5rem 1rem 3rem 1rem;
+      background-image: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.18) 0%, transparent 60%);
+      background-repeat: no-repeat;
+      line-height: 1.6;
+    }
+
+    .card-container {
+      width: 100%;
+      max-width: 460px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      position: relative;
+    }
+
+    /* Top Institution Brand Header */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: rgba(18, 26, 45, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-light);
+      font-size: 1.2rem;
+    }
+
+    .brand-text h1 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .brand-text span {
+      font-size: 0.7rem;
+      color: var(--accent-light);
+      font-weight: 600;
+    }
+
+    .nfc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius-full);
+      font-size: 0.725rem;
+      color: var(--accent-light);
+      font-weight: 700;
+    }
+
+    /* Main Employee Profile Card */
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 1.5rem 1.75rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(14, 165, 233, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0284c7, #38bdf8, #0284c7);
+    }
+
+    /* Avatar */
+    .avatar-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1.25rem auto;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent-light);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .verified-icon {
+      position: absolute;
+      bottom: 4px;
+      left: 6px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #0284c7;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      border: 2px solid var(--bg-card);
+    }
+
+    .emp-name {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+
+    .emp-title {
+      font-size: 1.05rem;
+      color: var(--accent-light);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .emp-dept-badge {
+      display: inline-block;
+      padding: 0.25rem 0.85rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      margin-bottom: 1.25rem;
+    }
+
+    .emp-bio {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    /* Primary Quick Action Buttons */
+    .primary-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-family);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-call {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-call:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+      transform: translateY(-2px);
+    }
+
+    .btn-wa {
+      background: #128c7e;
+      color: #fff;
+      border: 1px solid #25d366;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+    }
+
+    .btn-wa:hover {
+      background: #25d366;
+      color: #0b291a;
+      transform: translateY(-2px);
+    }
+
+    .btn-vcard {
+      width: 100%;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn-vcard:hover {
+      background: rgba(56, 189, 248, 0.22);
+      transform: translateY(-2px);
+    }
+
+    .btn-share {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+    }
+
+    .btn-share:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    /* Details Section */
+    .details-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+
+    .detail-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-light);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .detail-content h4 {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .detail-content p, .detail-content a {
+      font-size: 0.95rem;
+      color: #f1f5f9;
+      font-weight: 600;
+      word-break: break-all;
+      text-decoration: none;
+    }
+
+    .detail-content a:hover {
+      color: var(--accent-light);
+    }
+
+    /* Specialization Tags */
+    .specs-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+    }
+
+    .spec-tag {
+      padding: 0.2rem 0.65rem;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-full);
+      font-size: 0.775rem;
+      color: #e2e8f0;
+    }
+
+    /* Reviews & Rating Section */
+    .reviews-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .reviews-card h3 {
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .reviews-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .review-action-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-rate {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.1) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+
+    .btn-rate:hover {
+      background: rgba(245, 158, 11, 0.3);
+      color: #fff;
+    }
+
+    .btn-google {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .btn-google:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Footer */
+    .card-footer {
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+
+    .card-footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    /* Modal for Review */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.88);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s;
+    }
+
+    .modal-backdrop.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 2rem;
+      color: #64748b;
+      margin: 1.25rem 0;
+      direction: ltr;
+    }
+
+    .star-rating i {
+      cursor: pointer;
+      transition: color 0.15s, transform 0.15s;
+    }
+
+    .star-rating i:hover, .star-rating i.active {
+      color: #f59e0b;
+      transform: scale(1.15);
+    }
+
+    .form-ctrl {
+      width: 100%;
+      background: rgba(11, 17, 30, 0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      color: #fff;
+      font-family: var(--font-family);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      outline: none;
+    }
+
+    .form-ctrl:focus {
+      border-color: var(--accent-light);
+    }
+
+    /* Deactivated Card Notice */
+    .deactivated-notice {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+
+    .deactivated-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1.5rem auto;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    /* Toast */
+    .card-toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(18, 26, 45, 0.95);
+      border: 1px solid var(--accent-light);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      z-index: 3000;
+      opacity: 0;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+
+    .card-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    
+    <!-- Header -->
+    <header class="brand-header">
+      <div class="brand-title-wrap">
+        <div class="brand-logo-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div class="brand-text">
+          <h1 id="brandCompanyName">الجدار الآمن</h1>
+          <span>للأنظمة الإلكترونية</span>
+        </div>
+      </div>
+      <div class="nfc-badge">
+        <i class="fa-solid fa-wifi"></i>
+        <span>NFC CARD</span>
+      </div>
+    </header>
+
+    <!-- Deactivated State Notice (Shown when card is deactivated) -->
+    <div class="deactivated-notice" id="deactivatedCardBox">
+      <div class="deactivated-icon">
+        <i class="fa-solid fa-shield-slash"></i>
+      </div>
+      <h2 style="font-size: 1.45rem; margin-bottom: 0.75rem; color: #fff;">هذه البطاقة غير مفعّلة حالياً</h2>
+      <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem;">
+        البطاقة التعريفية التابعة لمؤسسة <strong>الجدار الآمن للأنظمة الإلكترونية</strong> متوقفة مؤقتاً أو غير متاحة. للوصول إلى إدارة المؤسسة يمكنك التواصل مباشرة:
+      </p>
+      <a href="tel:+962790000000" id="deactivatedPhoneBtn" class="btn-card btn-call" style="margin-bottom: 0.75rem;">
+        <i class="fa-solid fa-phone"></i>
+        <span>الاتصال بالإدارة</span>
+      </a>
+      <a href="index.html" class="btn-card btn-share">
+        <i class="fa-solid fa-house"></i>
+        <span>زيارة الموقع الرسمي</span>
+      </a>
+    </div>
+
+    <!-- Active Profile Content -->
+    <div id="activeCardContent">
+      
+      <!-- Profile Card -->
+      <section class="profile-card">
+        <div class="avatar-wrapper">
+          <img id="empAvatar" class="avatar-img" src="" alt="صورة الموظف">
+          <div class="verified-icon" title="موظف معتمد"><i class="fa-solid fa-check"></i></div>
+        </div>
+
+        <h2 class="emp-name" id="empName">...</h2>
+        <div class="emp-title" id="empTitle">...</div>
+        <div class="emp-dept-badge" id="empDept">...</div>
+
+        <p class="emp-bio" id="empBio">...</p>
+
+        <!-- Main Actions -->
+        <div class="primary-actions-grid">
+          <a href="#" id="callBtn" class="btn-card btn-call">
+            <i class="fa-solid fa-phone"></i>
+            <span>اتصال مباشر</span>
+          </a>
+          <a href="#" id="waBtn" target="_blank" rel="noopener noreferrer" class="btn-card btn-wa">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>واتساب</span>
+          </a>
+        </div>
+
+        <button type="button" id="vcardBtn" class="btn-card btn-vcard">
+          <i class="fa-solid fa-address-card"></i>
+          <span>حفظ جهة الاتصال على الهاتف</span>
+        </button>
+
+        <button type="button" id="shareBtn" class="btn-card btn-share">
+          <i class="fa-solid fa-share-nodes"></i>
+          <span>مشاركة البطاقة</span>
+        </button>
+      </section>
+
+      <!-- Contact & Specializations Details -->
+      <section class="details-box">
+        
+        <!-- Phone -->
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="detail-content">
+            <h4>رقم الهاتف</h4>
+            <a href="#" id="detailPhone" dir="ltr">-</a>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="detail-content">
+            <h4>البريد الإلكتروني</h4>
+            <a href="#" id="detailEmail" dir="ltr">-</a>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="detail-content">
+            <h4>المقر الرئيسي</h4>
+            <p id="detailAddress">المملكة الأردنية الهاشمية - عمّان</p>
+          </div>
+        </div>
+
+        <!-- Specializations -->
+        <div class="detail-item" id="specsBox">
+          <div class="detail-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <div class="detail-content" style="flex: 1;">
+            <h4>مجالات الاختصاص والخدمات</h4>
+            <div class="specs-tags" id="specsTagsContainer">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Rating & Google Reviews -->
+      <section class="reviews-card">
+        <h3>تجربتك تهمنا</h3>
+        <p>يسعدنا تقييمكم لخدمتنا لمساعدتنا على تقديم أفضل جودة دائماً</p>
+
+        <div class="review-action-btns">
+          <button type="button" class="btn-card btn-rate" id="openReviewModalBtn">
+            <i class="fa-solid fa-star"></i>
+            <span>قيّم تجربتك معنا</span>
+          </button>
+
+          <a href="#" id="googleReviewBtn" target="_blank" rel="noopener noreferrer" class="btn-card btn-google">
+            <i class="fa-brands fa-google" style="color: #4285f4;"></i>
+            <span>قيّمنا على Google Reviews</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="card-footer">
+      <div>مؤسسة <strong>الجدار الآمن للأنظمة الإلكترونية</strong></div>
+      <div style="margin-top: 0.25rem;">
+        <a href="index.html">زيارة الموقع الإلكتروني الرسمي &larr;</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Rating Modal -->
+  <div class="modal-backdrop" id="reviewModal">
+    <div class="modal-box">
+      <h3 style="font-size: 1.25rem; font-weight: 800; text-align: center; color: #fff;">تقييم تجربتك</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 0.25rem;">
+        يرجى اختيار عدد النجوم وكتابة رأيك (اختياري)
+      </p>
+
+      <div class="star-rating" id="starsContainer">
+        <i class="fa-solid fa-star active" data-rating="1"></i>
+        <i class="fa-solid fa-star active" data-rating="2"></i>
+        <i class="fa-solid fa-star active" data-rating="3"></i>
+        <i class="fa-solid fa-star active" data-rating="4"></i>
+        <i class="fa-solid fa-star active" data-rating="5"></i>
+      </div>
+
+      <form id="ratingForm">
+        <input type="text" id="reviewerName" class="form-ctrl" placeholder="اسمك الكريم (اختياري)">
+        <input type="tel" id="reviewerPhone" class="form-ctrl" placeholder="رقم الجوال (اختياري)" dir="ltr">
+        <textarea id="reviewerComment" class="form-ctrl" rows="3" placeholder="أضف تعليقك أو ملاحظتك هنا..."></textarea>
+
+        <div style="display: flex; gap: 0.75rem;">
+          <button type="button" class="btn-card btn-share" style="flex: 1;" id="closeReviewModalBtn">إلغاء</button>
+          <button type="submit" class="btn-card btn-call" style="flex: 2;">إرسال التقييم</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="card-toast" id="cardToast">تم حفظ التقييم بنجاح!</div>
+
+  <script>
+    // Extract Card identifier from URL (e.g. /card/ahmad or card.html?id=ahmad)
+    function getCardIdentifier() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('id')) return urlParams.get('id');
+      if (urlParams.has('slug')) return urlParams.get('slug');
+
+      // Check pathname (e.g. /card/ahmad)
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      const cardIdx = parts.indexOf('card');
+      if (cardIdx !== -1 && parts[cardIdx + 1]) {
+        return decodeURIComponent(parts[cardIdx + 1]);
+      }
+      return 'ahmad'; // default fallback for preview
+    }
+
+    const cardSlug = getCardIdentifier();
+    let currentEmployee = null;
+    let currentCard = null;
+    let selectedRating = 5;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadCardData();
+      initCardActions();
+      initReviewSystem();
+    });
+
+    // Load Card & Staff Data
+    async function loadCardData() {
+      try {
+        const res = await fetch(`/api/card-data/${encodeURIComponent(cardSlug)}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && json.card) {
+            currentCard = json.card;
+            currentEmployee = json.employee;
+            renderCard(currentCard, currentEmployee, json.company);
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('API error, falling back to local database/cache');
+      }
+
+      // Offline / LocalStorage Fallback
+      const cached = localStorage.getItem('cachedAdminData');
+      if (cached) {
+        try {
+          const db = JSON.parse(cached);
+          const card = (db.nfcCards || []).find(c => c.slug === cardSlug || c.id === cardSlug || c.cardCode === cardSlug);
+          if (card) {
+            const emp = (db.employees || []).find(e => e.id === card.employeeId);
+            currentCard = card;
+            currentEmployee = emp;
+            renderCard(card, emp, db.companyInfo);
+            return;
+          }
+        } catch (e) {}
+      }
+
+      // Show deactivated state if no card or not found
+      showDeactivated();
+    }
+
+    function renderCard(card, emp, company) {
+      const isCardActive = card && (card.isActive === true || card.status === 'مفعلة' || card.status === 'active') && card.status !== 'معطلة' && card.isActive !== false;
+      const isEmpActive = emp && (emp.isActive !== false && emp.status !== 'غير فعال' && emp.status !== 'معطل');
+
+      if (!isCardActive || !isEmpActive) {
+        showDeactivated(company);
+        return;
+      }
+
+      // Populate Employee info
+      document.getElementById('empAvatar').src = emp.photo || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80';
+      document.getElementById('empName').textContent = emp.name;
+      document.getElementById('empTitle').textContent = emp.title;
+      document.getElementById('empDept').textContent = emp.department || 'القسم الفني والهندسي';
+      document.getElementById('empBio').textContent = emp.bio || 'متخصص في حلول الأمن والسلامة والأنظمة الإلكترونية.';
+
+      // Contact buttons
+      const rawPhone = emp.phoneRaw || emp.phone.replace(/[^0-9+]/g, '');
+      document.getElementById('callBtn').href = `tel:${rawPhone}`;
+      document.getElementById('callBtn').onclick = () => trackStat('calls');
+
+      const waNum = emp.whatsappNumber || emp.whatsapp.replace(/[^0-9]/g, '');
+      const waText = encodeURIComponent(`السلام عليكم ${emp.name}، أتواصل معك بخصوص خدمات الجدار الآمن للأنظمة الإلكترونية.`);
+      document.getElementById('waBtn').href = `https://wa.me/${waNum}?text=${waText}`;
+      document.getElementById('waBtn').onclick = () => trackStat('whatsapps');
+
+      // Details
+      document.getElementById('detailPhone').textContent = emp.phone;
+      document.getElementById('detailPhone').href = `tel:${rawPhone}`;
+
+      document.getElementById('detailEmail').textContent = emp.email || 'info@aljidar-security.com';
+      document.getElementById('detailEmail').href = `mailto:${emp.email || 'info@aljidar-security.com'}`;
+
+      if (company?.address) {
+        document.getElementById('detailAddress').textContent = company.address;
+      }
+
+      if (company?.logo || company?.logoUrl) {
+        const logoWrap = document.querySelector('.brand-logo-icon');
+        if (logoWrap) {
+          logoWrap.innerHTML = `<img src="${company.logo || company.logoUrl}" alt="شعار المؤسسة" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">`;
+        }
+      }
+
+      // Specialization tags
+      const specsContainer = document.getElementById('specsTagsContainer');
+      specsContainer.innerHTML = '';
+      const specsList = (emp.specialization || 'كاميرات المراقبة، أنظمة الحريق، الشبكات').split(/,|،/);
+      specsList.forEach(s => {
+        const span = document.createElement('span');
+        span.className = 'spec-tag';
+        span.textContent = s.trim();
+        specsContainer.appendChild(span);
+      });
+
+      // Google review button
+      const gBtn = document.getElementById('googleReviewBtn');
+      if (company?.googleReviewsUrl) {
+        gBtn.href = company.googleReviewsUrl;
+      } else {
+        gBtn.href = company?.googleMapsUrl || 'https://maps.google.com';
+      }
+      gBtn.onclick = () => trackStat('googleReviews');
+
+      // Track open stat
+      trackStat('opens');
+    }
+
+    function showDeactivated(company) {
+      document.getElementById('activeCardContent').style.display = 'none';
+      document.getElementById('deactivatedCardBox').style.display = 'block';
+      if (company?.phoneRaw) {
+        document.getElementById('deactivatedPhoneBtn').href = `tel:${company.phoneRaw}`;
+      }
+    }
+
+    // Privacy-Friendly Analytics Tracking
+    function trackStat(action) {
+      if (!currentCard) return;
+      try {
+        fetch(`/api/card-analytics/${encodeURIComponent(currentCard.slug)}/track`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action })
+        }).catch(() => {});
+      } catch (e) {}
+    }
+
+    // Interactive Actions (vCard & Share)
+    function initCardActions() {
+      // Generate and Download vCard (.vcf)
+      document.getElementById('vcardBtn').addEventListener('click', () => {
+        if (!currentEmployee) return;
+        trackStat('vCards');
+
+        const emp = currentEmployee;
+        const vcardContent = 
+`BEGIN:VCARD
+VERSION:3.0
+N;CHARSET=UTF-8:${emp.name};;;;
+FN;CHARSET=UTF-8:${emp.name}
+ORG;CHARSET=UTF-8:الجدار الآمن للأنظمة الإلكترونية
+TITLE;CHARSET=UTF-8:${emp.title}
+TEL;TYPE=CELL,VOICE:${emp.phoneRaw || emp.phone}
+EMAIL;TYPE=WORK,INTERNET:${emp.email || 'info@aljidar-security.com'}
+URL;CHARSET=UTF-8:${window.location.href}
+NOTE;CHARSET=UTF-8:${emp.specialization || 'حلول الأمن والسلامة والأنظمة الإلكترونية'}
+END:VCARD`;
+
+        const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${emp.name.replace(/\s+/g, '_')}.vcf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        showToast('جاري حفظ جهة الاتصال...');
+      });
+
+      // Share Button
+      document.getElementById('shareBtn').addEventListener('click', async () => {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: `${currentEmployee?.name || 'البطاقة التعريفية'} - الجدار الآمن`,
+              text: `البطاقة التعريفية لـ ${currentEmployee?.name} - مؤسسة الجدار الآمن للأنظمة الإلكترونية`,
+              url: window.location.href
+            });
+            return;
+          } catch (e) {}
+        }
+        // Fallback: Copy link
+        navigator.clipboard.writeText(window.location.href);
+        showToast('تم نسخ رابط البطاقة بنجاح!');
+      });
+    }
+
+    // Review Modal Logic
+    function initReviewSystem() {
+      const reviewModal = document.getElementById('reviewModal');
+      const openBtn = document.getElementById('openReviewModalBtn');
+      const closeBtn = document.getElementById('closeReviewModalBtn');
+      const stars = document.querySelectorAll('#starsContainer i');
+      const ratingForm = document.getElementById('ratingForm');
+
+      openBtn?.addEventListener('click', () => {
+        reviewModal.classList.add('show');
+      });
+
+      closeBtn?.addEventListener('click', () => {
+        reviewModal.classList.remove('show');
+      });
+
+      // Star Rating Selection
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          selectedRating = parseInt(star.getAttribute('data-rating'), 10);
+          stars.forEach(s => {
+            const r = parseInt(s.getAttribute('data-rating'), 10);
+            if (r <= selectedRating) {
+              s.classList.add('active');
+            } else {
+              s.classList.remove('active');
+            }
+          });
+        });
+      });
+
+      // Submit Rating
+      ratingForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const clientName = document.getElementById('reviewerName').value.trim() || 'عميل كريم';
+        const clientPhone = document.getElementById('reviewerPhone')?.value.trim() || '';
+        const comment = document.getElementById('reviewerComment').value.trim();
+
+        const reviewPayload = {
+          cardSlug: currentCard?.slug || cardSlug,
+          employeeId: currentEmployee?.id || '',
+          employeeName: currentEmployee?.name || '',
+          rating: selectedRating,
+          clientName,
+          clientPhone,
+          comment
+        };
+
+        try {
+          await fetch('/api/reviews', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(reviewPayload)
+          });
+        } catch (err) {}
+
+        reviewModal.classList.remove('show');
+        ratingForm.reset();
+        showToast('شكراً جزيلاً لتقييمك الكريم!');
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('cardToast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 3500);
+    }
+  </script>
+</body>
+</html>

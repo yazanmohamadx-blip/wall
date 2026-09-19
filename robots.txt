@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /backups/
+Disallow: /data/
+Allow: /
+Allow: /card/
+Allow: /uploads/
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+
+Sitemap: https://aljdar-alameen.com/sitemap.xml

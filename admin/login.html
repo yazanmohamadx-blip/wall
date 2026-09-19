@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول | لوحة تحكم الجدار الآمن</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/admin.css">
+
+  <style>
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.12) 0%, #090d16 60%);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 440px;
+      background: var(--adm-card);
+      border: 1px solid var(--adm-border-active);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+
+    .login-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--adm-accent);
+      font-size: 1.75rem;
+      margin: 0 auto 1.25rem auto;
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-header h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+
+    .login-header p {
+      font-size: 0.875rem;
+      color: var(--adm-text-muted);
+    }
+
+    .login-alert {
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .login-alert.error {
+      display: flex;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .login-alert.success {
+      display: flex;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+    }
+
+    .login-form-group {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--adm-text-muted);
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    /* Modal for Forgot Password */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--adm-card);
+      border: 1px solid var(--adm-border-active);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <div class="login-box">
+      
+      <div class="login-logo">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+
+      <div class="login-header">
+        <h1>لوحة تحكم المؤسسة</h1>
+        <p>الجدار الآمن للأنظمة الإلكترونية</p>
+      </div>
+
+      <div id="loginAlert" class="login-alert"></div>
+
+      <!-- Step 1: Email & Password Form -->
+      <form id="loginForm" novalidate autocomplete="on">
+        
+        <div class="login-form-group">
+          <label class="form-label" for="email">البريد الإلكتروني للإدارة</label>
+          <input type="email" id="email" class="form-input" placeholder="admin@domain.com" required autocomplete="email" dir="ltr">
+        </div>
+
+        <div class="login-form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="form-label" for="password" style="margin-bottom: 0;">كلمة المرور</label>
+            <a href="javascript:void(0)" id="openForgotModalBtn" style="font-size: 0.78rem; color: var(--adm-accent); text-decoration: none;">نسيت كلمة المرور؟</a>
+          </div>
+          <div class="password-wrap">
+            <input type="password" id="password" class="form-input" placeholder="••••••••••••" required autocomplete="current-password" style="padding-left: 2.8rem;" dir="ltr">
+            <button type="button" class="password-toggle-btn" id="togglePasswordBtn" aria-label="إظهار/إخفاء كلمة المرور">
+              <i class="fa-solid fa-eye" id="eyeIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.75rem;">
+          <button type="submit" class="btn-adm btn-adm-primary" style="width: 100%; padding: 0.85rem;" id="loginSubmitBtn">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span>تسجيل الدخول</span>
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Step 2: 2FA TOTP Form (Shown only if 2FA is active) -->
+      <form id="twoFactorForm" style="display: none;" novalidate>
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <i class="fa-solid fa-mobile-screen-button" style="font-size: 2.5rem; color: var(--adm-accent); margin-bottom: 0.75rem;"></i>
+          <h2 style="font-size: 1.2rem; color: #fff; margin-bottom: 0.35rem;">التحقق بخطوتين (2FA)</h2>
+          <p style="font-size: 0.82rem; color: var(--adm-text-muted);">أدخل الرمز السداسي من تطبيق المصادقة (Google Authenticator)</p>
+        </div>
+
+        <div class="login-form-group">
+          <input type="text" id="twoFactorCode" class="form-input" placeholder="000000" maxlength="6" pattern="[0-9]{6}" required style="text-align: center; font-size: 1.6rem; letter-spacing: 0.35rem; font-family: monospace;" autocomplete="one-time-code">
+        </div>
+
+        <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+          <button type="submit" class="btn-adm btn-adm-primary" style="width: 100%; padding: 0.85rem;" id="verify2faBtn">
+            <i class="fa-solid fa-check"></i>
+            <span>تأكيد الرمز والدخول</span>
+          </button>
+          <button type="button" class="btn-adm btn-adm-secondary" style="width: 100%;" id="cancel2faBtn">
+            <span>إلغاء والعودة</span>
+          </button>
+        </div>
+      </form>
+
+      <div style="margin-top: 1.75rem; text-align: center; font-size: 0.825rem; color: var(--adm-text-muted);">
+        <a href="../index.html" style="color: var(--adm-accent); text-decoration: none;">
+          <i class="fa-solid fa-arrow-left"></i> العودة إلى الموقع الرئيسي
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal-overlay" id="forgotModal">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.15rem; color: #fff; font-weight: 700;">استعادة كلمة المرور</h3>
+        <button type="button" id="closeForgotModalBtn" style="background: transparent; border: none; color: var(--adm-text-muted); cursor: pointer; font-size: 1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--adm-text-muted); margin-bottom: 1.25rem;">أدخل بريدك الإلكتروني المسجل وسيقوم النظام بتوليد رابط استعادة آمن صالح لـ 15 دقيقة.</p>
+      
+      <div id="forgotAlert" class="login-alert"></div>
+
+      <form id="forgotForm">
+        <div class="login-form-group">
+          <label class="form-label" for="forgotEmail">البريد الإلكتروني للإدارة</label>
+          <input type="email" id="forgotEmail" class="form-input" placeholder="admin@domain.com" required dir="ltr">
+        </div>
+        <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+          <button type="submit" class="btn-adm btn-adm-primary" style="flex: 1;" id="sendForgotBtn">
+            <span>إرسال رابط الاستعادة</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Check if initial setup is needed before rendering login
+    fetch('/api/auth/setup-status')
+      .then(res => res.json())
+      .then(data => {
+        if (data.setupRequired) {
+          window.location.href = 'setup.html';
+        }
+      })
+      .catch(() => {});
+
+    // Password visibility toggle
+    const toggleBtn = document.getElementById('togglePasswordBtn');
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+    toggleBtn?.addEventListener('click', () => {
+      const isPwd = passwordInput.type === 'password';
+      passwordInput.type = isPwd ? 'text' : 'password';
+      eyeIcon.className = isPwd ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+    });
+
+    const loginForm = document.getElementById('loginForm');
+    const twoFactorForm = document.getElementById('twoFactorForm');
+    const loginAlert = document.getElementById('loginAlert');
+    const submitBtn = document.getElementById('loginSubmitBtn');
+    let tempAuthToken = null;
+
+    // Login Submission
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) {
+        showAlert('يرجى إدخال البريد الإلكتروني وكلمة المرور.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري التحقق...';
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include', // Sends & receives HttpOnly cookies
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          if (data.twoFactorRequired) {
+            // Require 2FA verification step
+            tempAuthToken = data.tempToken;
+            loginForm.style.display = 'none';
+            twoFactorForm.style.display = 'block';
+            showAlert('يرجى إدخال رمز التحقق الثنائي.', 'success');
+            document.getElementById('twoFactorCode').focus();
+            return;
+          }
+
+          showAlert(data.message || 'تم تسجيل الدخول بنجاح!', 'success');
+          localStorage.setItem('adminUser', JSON.stringify(data.user || {}));
+          setTimeout(() => { window.location.href = 'index.html'; }, 600);
+        } else {
+          showAlert(data.message || 'بيانات الدخول غير صحيحة.', 'error');
+        }
+      } catch (err) {
+        showAlert('تعذر الاتصال بالخادم، يرجى المحاولة لاحقاً.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول';
+      }
+    });
+
+    // 2FA Verification Submission
+    twoFactorForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const code = document.getElementById('twoFactorCode').value.trim();
+      const verifyBtn = document.getElementById('verify2faBtn');
+
+      if (!code || code.length !== 6) {
+        showAlert('يرجى إدخال الرمز المكون من 6 أرقام.', 'error');
+        return;
+      }
+
+      verifyBtn.disabled = true;
+      verifyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري التحقق...';
+
+      try {
+        const res = await fetch('/api/auth/verify-2fa', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ tempToken: tempAuthToken, code })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showAlert('تم التحقق بنجاح! جاري الدخول...', 'success');
+          localStorage.setItem('adminUser', JSON.stringify(data.user || {}));
+          setTimeout(() => { window.location.href = 'index.html'; }, 600);
+        } else {
+          showAlert(data.message || 'رمز التحقق غير صحيح.', 'error');
+        }
+      } catch (err) {
+        showAlert('حدث خطأ في الاتصال بالخادم.', 'error');
+      } finally {
+        verifyBtn.disabled = false;
+        verifyBtn.innerHTML = '<i class="fa-solid fa-check"></i> تأكيد الرمز والدخول';
+      }
+    });
+
+    document.getElementById('cancel2faBtn')?.addEventListener('click', () => {
+      twoFactorForm.style.display = 'none';
+      loginForm.style.display = 'block';
+      tempAuthToken = null;
+    });
+
+    // Forgot Password Modal Handlers
+    const forgotModal = document.getElementById('forgotModal');
+    const openForgotBtn = document.getElementById('openForgotModalBtn');
+    const closeForgotBtn = document.getElementById('closeForgotModalBtn');
+    const forgotForm = document.getElementById('forgotForm');
+    const forgotAlert = document.getElementById('forgotAlert');
+
+    openForgotBtn?.addEventListener('click', () => {
+      forgotModal.classList.add('active');
+    });
+
+    closeForgotBtn?.addEventListener('click', () => {
+      forgotModal.classList.remove('active');
+    });
+
+    forgotForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('forgotEmail').value.trim();
+      const btn = document.getElementById('sendForgotBtn');
+
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري المعالجة...';
+
+      try {
+        const res = await fetch('/api/auth/forgot-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+
+        forgotAlert.className = 'login-alert success';
+        forgotAlert.style.display = 'flex';
+        forgotAlert.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${data.message || 'إذا كان البريد مسجلاً، فقد تم إصدار رابط الاستعادة.'}</span>`;
+
+        if (data.recoveryUrl) {
+          // In local environment without external SMTP relay, display direct one-click link
+          forgotAlert.innerHTML += `<div style="margin-top: 0.5rem;"><a href="${data.recoveryUrl}" style="color: #fff; text-decoration: underline; font-weight: bold;">اضغط هنا لتعيين كلمة المرور فوراً</a></div>`;
+        }
+      } catch (err) {
+        forgotAlert.className = 'login-alert error';
+        forgotAlert.style.display = 'flex';
+        forgotAlert.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <span>تعذر إرسال الطلب، يرجى المحاولة لاحقاً.</span>`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>إرسال رابط الاستعادة</span>';
+      }
+    });
+
+    function showAlert(msg, type) {
+      loginAlert.className = `login-alert ${type}`;
+      loginAlert.innerHTML = type === 'error' 
+        ? `<i class="fa-solid fa-circle-exclamation"></i> <span>${msg}</span>`
+        : `<i class="fa-solid fa-circle-check"></i> <span>${msg}</span>`;
+      loginAlert.style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
